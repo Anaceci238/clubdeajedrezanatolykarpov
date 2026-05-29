@@ -1,568 +1,1278 @@
 <!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tienda — Club de Ajedrez Anatoly Karpov</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
-  <style>
-    :root{
-      --gold:#f5a800;--gold-light:#ffd060;--gold-dark:#c47f00;
-      --black:#0d0d0d;--dark:#1a1a1a;--dark2:#242424;
-      --white:#f8f4ec;--red:#8b1a1a;
-      --whatsapp:#25D366;--wa-dark:#128C7E;--wa-darker:#075E54;
-    }
-    *{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{background:var(--black);color:var(--white);font-family:"Crimson Pro",Georgia,serif;overflow-x:hidden;}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda — Club de Ajedrez Anatoly Karpov</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --gold: #f5a800;
+        --gold-light: #ffd060;
+        --gold-dark: #c47f00;
+        --black: #0d0d0d;
+        --dark: #1a1a1a;
+        --dark2: #242424;
+        --white: #f8f4ec;
+        --red: #8b1a1a;
+        --whatsapp: #25d366;
+        --wa-dark: #128c7e;
+        --wa-darker: #075e54;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: "Crimson Pro", Georgia, serif;
+        overflow-x: hidden;
+      }
 
-    /* ── NAV ── */
-    nav{
-      position:fixed;top:0;left:0;right:0;z-index:100;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:12px 50px;
-      background:rgba(13,13,13,0.97);
-      border-bottom:2px solid var(--gold-dark);
-      backdrop-filter:blur(10px);
-    }
-    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-    .nav-logo img{height:48px;width:48px;object-fit:contain;}
-    .nav-logo-text{font-family:"Bebas Neue",sans-serif;font-size:1.1rem;letter-spacing:3px;color:var(--gold);line-height:1.2;}
-    .nav-logo-text small{display:block;font-size:0.6rem;letter-spacing:2px;color:rgba(245,168,0,0.6);}
-    .nav-back{font-family:"Bebas Neue",sans-serif;letter-spacing:2px;font-size:0.9rem;color:rgba(248,244,236,0.55);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color 0.3s;}
-    .nav-back:hover{color:var(--gold);}
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 50px;
+        background: rgba(13, 13, 13, 0.97);
+        border-bottom: 2px solid var(--gold-dark);
+        backdrop-filter: blur(10px);
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .nav-logo img {
+        height: 48px;
+        width: 48px;
+        object-fit: contain;
+      }
+      .nav-logo-text {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 3px;
+        color: var(--gold);
+        line-height: 1.2;
+      }
+      .nav-logo-text small {
+        display: block;
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+        color: rgba(245, 168, 0, 0.6);
+      }
+      .nav-back {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+        color: rgba(248, 244, 236, 0.55);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s;
+      }
+      .nav-back:hover {
+        color: var(--gold);
+      }
 
-    /* ── HERO ── */
-    .store-hero{
-      padding:130px 60px 55px;
-      background:radial-gradient(ellipse at 50% 60%,#1e1000 0%,#0d0d0d 70%);
-      border-bottom:2px solid var(--gold-dark);
-      text-align:center;position:relative;overflow:hidden;
-    }
-    .store-hero::before{content:"♟";position:absolute;left:-30px;top:50%;transform:translateY(-50%);font-size:16rem;color:rgba(245,168,0,0.025);pointer-events:none;}
-    .store-hero::after{content:"♜";position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-size:16rem;color:rgba(245,168,0,0.025);pointer-events:none;}
-    .hero-eyebrow{font-family:"Bebas Neue",sans-serif;letter-spacing:6px;color:var(--gold);font-size:0.88rem;margin-bottom:12px;}
-    .hero-title{font-family:"Playfair Display",serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:900;line-height:1.05;color:var(--white);}
-    .hero-title em{color:var(--gold);font-style:normal;}
-    .hero-sub{font-size:1.08rem;line-height:1.8;color:rgba(248,244,236,0.5);margin:14px auto 0;max-width:560px;}
-    .hero-divider{width:60px;height:2px;background:var(--gold);margin:22px auto;}
+      /* ── HERO ── */
+      .store-hero {
+        padding: 130px 60px 55px;
+        background: radial-gradient(
+          ellipse at 50% 60%,
+          #1e1000 0%,
+          #0d0d0d 70%
+        );
+        border-bottom: 2px solid var(--gold-dark);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .store-hero::before {
+        content: "♟";
+        position: absolute;
+        left: -30px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16rem;
+        color: rgba(245, 168, 0, 0.025);
+        pointer-events: none;
+      }
+      .store-hero::after {
+        content: "♜";
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 16rem;
+        color: rgba(245, 168, 0, 0.025);
+        pointer-events: none;
+      }
+      .hero-eyebrow {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 6px;
+        color: var(--gold);
+        font-size: 0.88rem;
+        margin-bottom: 12px;
+      }
+      .hero-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        font-weight: 900;
+        line-height: 1.05;
+        color: var(--white);
+      }
+      .hero-title em {
+        color: var(--gold);
+        font-style: normal;
+      }
+      .hero-sub {
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: rgba(248, 244, 236, 0.5);
+        margin: 14px auto 0;
+        max-width: 560px;
+      }
+      .hero-divider {
+        width: 60px;
+        height: 2px;
+        background: var(--gold);
+        margin: 22px auto;
+      }
 
-    /* ── TABS ── */
-    .section-tabs{
-      display:flex;justify-content:center;
-      border-bottom:2px solid rgba(245,168,0,0.12);
-      background:var(--dark);
-      position:sticky;top:73px;z-index:50;
-    }
-    .tab-btn{
-      font-family:"Bebas Neue",sans-serif;letter-spacing:3px;font-size:1rem;
-      padding:17px 55px;background:transparent;border:none;cursor:pointer;
-      color:rgba(248,244,236,0.4);transition:all 0.3s;
-      border-bottom:3px solid transparent;margin-bottom:-2px;
-      display:flex;align-items:center;gap:10px;
-    }
-    .tab-btn:hover{color:rgba(248,244,236,0.8);}
-    .tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(245,168,0,0.04);}
-    .tab-icon{font-size:1.25rem;}
+      /* ── TABS ── */
+      .section-tabs {
+        display: flex;
+        justify-content: center;
+        border-bottom: 2px solid rgba(245, 168, 0, 0.12);
+        background: var(--dark);
+        position: sticky;
+        top: 73px;
+        z-index: 50;
+      }
+      .tab-btn {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 3px;
+        font-size: 1rem;
+        padding: 17px 55px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: rgba(248, 244, 236, 0.4);
+        transition: all 0.3s;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .tab-btn:hover {
+        color: rgba(248, 244, 236, 0.8);
+      }
+      .tab-btn.active {
+        color: var(--gold);
+        border-bottom-color: var(--gold);
+        background: rgba(245, 168, 0, 0.04);
+      }
+      .tab-icon {
+        font-size: 1.25rem;
+      }
 
-    /* ── SECTIONS ── */
-    .store-section{display:none;}
-    .store-section.visible{display:block;}
+      /* ── SECTIONS ── */
+      .store-section {
+        display: none;
+      }
+      .store-section.visible {
+        display: block;
+      }
 
-    /* ═══════════════════════════════
+      /* ═══════════════════════════════
        SECCIÓN 1 — MATERIAL
     ═══════════════════════════════ */
 
-    /* WA banner */
-    .wa-banner{
-      background:linear-gradient(135deg,var(--wa-darker),var(--wa-dark));
-      padding:14px 60px;
-      display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-    }
-    .wa-banner-text{font-family:"Bebas Neue",sans-serif;letter-spacing:3px;font-size:0.95rem;color:#fff;display:flex;align-items:center;gap:10px;}
-    .wa-cta-btn{
-      font-family:"Bebas Neue",sans-serif;letter-spacing:2px;font-size:0.85rem;
-      background:var(--whatsapp);color:#fff;padding:9px 24px;
-      clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
-      text-decoration:none;transition:all 0.3s;white-space:nowrap;
-      display:inline-flex;align-items:center;gap:8px;
-    }
-    .wa-cta-btn:hover{background:#1ebe5c;transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,0.4);}
+      /* WA banner */
+      .wa-banner {
+        background: linear-gradient(135deg, var(--wa-darker), var(--wa-dark));
+        padding: 14px 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .wa-banner-text {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 3px;
+        font-size: 0.95rem;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .wa-cta-btn {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        font-size: 0.85rem;
+        background: var(--whatsapp);
+        color: #fff;
+        padding: 9px 24px;
+        clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+        text-decoration: none;
+        transition: all 0.3s;
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .wa-cta-btn:hover {
+        background: #1ebe5c;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      }
 
-    /* How to order */
-    .how-order{
-      background:linear-gradient(135deg,#071a0f,#0d1a0d);
-      border-bottom:1px solid rgba(37,211,102,0.12);
-      padding:40px 60px;
-    }
-    .how-label{font-family:"Bebas Neue",sans-serif;letter-spacing:5px;font-size:0.78rem;color:var(--whatsapp);text-align:center;margin-bottom:24px;}
-    .how-steps{display:flex;justify-content:center;gap:0;flex-wrap:wrap;}
-    .how-step{
-      display:flex;flex-direction:column;align-items:center;text-align:center;
-      padding:0 32px;position:relative;flex:1;min-width:160px;
-    }
-    .how-step:not(:last-child)::after{
-      content:"›";position:absolute;right:-4px;top:14px;
-      font-size:2rem;color:rgba(37,211,102,0.25);line-height:1;
-    }
-    .step-num{
-      width:42px;height:42px;border-radius:50%;
-      border:2px solid var(--whatsapp);
-      display:flex;align-items:center;justify-content:center;
-      font-family:"Bebas Neue",sans-serif;font-size:1.2rem;color:var(--whatsapp);
-      margin-bottom:10px;background:rgba(37,211,102,0.06);
-    }
-    .how-step h4{font-family:"Bebas Neue",sans-serif;letter-spacing:2px;font-size:0.82rem;color:var(--white);margin-bottom:4px;}
-    .how-step p{font-size:0.85rem;color:rgba(248,244,236,0.4);line-height:1.5;}
+      /* How to order */
+      .how-order {
+        background: linear-gradient(135deg, #071a0f, #0d1a0d);
+        border-bottom: 1px solid rgba(37, 211, 102, 0.12);
+        padding: 40px 60px;
+      }
+      .how-label {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 5px;
+        font-size: 0.78rem;
+        color: var(--whatsapp);
+        text-align: center;
+        margin-bottom: 24px;
+      }
+      .how-steps {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        flex-wrap: wrap;
+      }
+      .how-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 32px;
+        position: relative;
+        flex: 1;
+        min-width: 160px;
+      }
+      .how-step:not(:last-child)::after {
+        content: "›";
+        position: absolute;
+        right: -4px;
+        top: 14px;
+        font-size: 2rem;
+        color: rgba(37, 211, 102, 0.25);
+        line-height: 1;
+      }
+      .step-num {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 2px solid var(--whatsapp);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.2rem;
+        color: var(--whatsapp);
+        margin-bottom: 10px;
+        background: rgba(37, 211, 102, 0.06);
+      }
+      .how-step h4 {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        font-size: 0.82rem;
+        color: var(--white);
+        margin-bottom: 4px;
+      }
+      .how-step p {
+        font-size: 0.85rem;
+        color: rgba(248, 244, 236, 0.4);
+        line-height: 1.5;
+      }
 
-    /* Section header */
-    .sec-header{padding:44px 60px 0;}
-    .sec-label{font-family:"Bebas Neue",sans-serif;letter-spacing:5px;color:var(--gold);font-size:0.82rem;margin-bottom:8px;}
-    .sec-title{font-family:"Playfair Display",serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--white);}
-    .sec-title em{color:var(--gold);font-style:normal;}
-    .sec-divider{width:50px;height:2px;background:var(--gold);margin:14px 0 0;}
+      /* Section header */
+      .sec-header {
+        padding: 44px 60px 0;
+      }
+      .sec-label {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 5px;
+        color: var(--gold);
+        font-size: 0.82rem;
+        margin-bottom: 8px;
+      }
+      .sec-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 700;
+        color: var(--white);
+      }
+      .sec-title em {
+        color: var(--gold);
+        font-style: normal;
+      }
+      .sec-divider {
+        width: 50px;
+        height: 2px;
+        background: var(--gold);
+        margin: 14px 0 0;
+      }
 
-    /* Category pills */
-    .cat-pills{display:flex;gap:10px;padding:28px 60px 0;flex-wrap:wrap;}
-    .cat-pill{
-      font-family:"Bebas Neue",sans-serif;letter-spacing:2px;font-size:0.76rem;
-      padding:6px 18px;border:1px solid rgba(245,168,0,0.18);
-      background:transparent;color:rgba(248,244,236,0.5);cursor:pointer;transition:all 0.3s;
-    }
-    .cat-pill:hover,.cat-pill.active{border-color:var(--gold);color:var(--gold);background:rgba(245,168,0,0.07);}
+      /* Category pills */
+      .cat-pills {
+        display: flex;
+        gap: 10px;
+        padding: 28px 60px 0;
+        flex-wrap: wrap;
+      }
+      .cat-pill {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        font-size: 0.76rem;
+        padding: 6px 18px;
+        border: 1px solid rgba(245, 168, 0, 0.18);
+        background: transparent;
+        color: rgba(248, 244, 236, 0.5);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .cat-pill:hover,
+      .cat-pill.active {
+        border-color: var(--gold);
+        color: var(--gold);
+        background: rgba(245, 168, 0, 0.07);
+      }
 
-    /* ── PRODUCT GRID ── */
-    .mat-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);
-      gap:28px;padding:28px 60px 80px;
-    }
+      /* ── PRODUCT GRID ── */
+      .mat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        padding: 28px 60px 80px;
+      }
 
-    .mat-card{
-      background:var(--dark);border:1px solid rgba(245,168,0,0.1);
-      position:relative;overflow:hidden;transition:all 0.4s;
-      display:flex;flex-direction:column;
-    }
-    .mat-card:hover{
-      border-color:rgba(37,211,102,0.35);
-      transform:translateY(-7px);
-      box-shadow:0 22px 55px rgba(0,0,0,0.65);
-    }
-    .mat-card::before{
-      content:"";position:absolute;top:0;left:0;right:0;height:3px;
-      background:linear-gradient(90deg,transparent,var(--whatsapp),transparent);
-      opacity:0;transition:opacity 0.4s;
-    }
-    .mat-card:hover::before{opacity:1;}
+      .mat-card {
+        background: var(--dark);
+        border: 1px solid rgba(245, 168, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s;
+        display: flex;
+        flex-direction: column;
+      }
+      .mat-card:hover {
+        border-color: rgba(37, 211, 102, 0.35);
+        transform: translateY(-7px);
+        box-shadow: 0 22px 55px rgba(0, 0, 0, 0.65);
+      }
+      .mat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--whatsapp),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+      }
+      .mat-card:hover::before {
+        opacity: 1;
+      }
 
-    /* Badge */
-    .mat-badge{
-      position:absolute;top:12px;left:12px;z-index:3;
-      font-family:"Bebas Neue",sans-serif;letter-spacing:1.5px;font-size:0.68rem;
-      padding:3px 10px;
-    }
-    .badge-stock{background:rgba(37,211,102,0.12);color:var(--whatsapp);border:1px solid rgba(37,211,102,0.28);}
-    .badge-limited{background:rgba(245,168,0,0.12);color:var(--gold);border:1px solid rgba(245,168,0,0.28);}
-    .badge-new{background:var(--gold);color:var(--black);}
+      /* Badge */
+      .mat-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        z-index: 3;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 1.5px;
+        font-size: 0.68rem;
+        padding: 3px 10px;
+      }
+      .badge-stock {
+        background: rgba(37, 211, 102, 0.12);
+        color: var(--whatsapp);
+        border: 1px solid rgba(37, 211, 102, 0.28);
+      }
+      .badge-limited {
+        background: rgba(245, 168, 0, 0.12);
+        color: var(--gold);
+        border: 1px solid rgba(245, 168, 0, 0.28);
+      }
+      .badge-new {
+        background: var(--gold);
+        color: var(--black);
+      }
 
-    /* Photo area */
-    .mat-photo{
-      position:relative;overflow:hidden;
-      height:220px;
-      background:var(--dark2);
-      cursor:zoom-in;
-    }
-    .mat-photo img{
-      width:100%;height:100%;
-      object-fit:cover;
-      transition:transform 0.5s ease;
-      display:block;
-    }
-    .mat-card:hover .mat-photo img{transform:scale(1.06);}
-    .photo-overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,0.45));
-      pointer-events:none;
-    }
-    /* Photo placeholder label */
-    .photo-add-label{
-      position:absolute;bottom:10px;right:10px;
-      font-family:"Bebas Neue",sans-serif;letter-spacing:2px;font-size:0.62rem;
-      background:rgba(0,0,0,0.6);color:rgba(245,168,0,0.5);
-      padding:3px 8px;border:1px dashed rgba(245,168,0,0.25);
-      pointer-events:none;
-    }
+      /* Photo area */
+      .mat-photo {
+        position: relative;
+        overflow: hidden;
+        height: 220px;
+        background: var(--dark2);
+        cursor: zoom-in;
+      }
+      .mat-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        display: block;
+      }
+      .mat-card:hover .mat-photo img {
+        transform: scale(1.06);
+      }
+      .photo-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 55%,
+          rgba(0, 0, 0, 0.45)
+        );
+        pointer-events: none;
+      }
+      /* Photo placeholder label */
+      .photo-add-label {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        font-size: 0.62rem;
+        background: rgba(0, 0, 0, 0.6);
+        color: rgba(245, 168, 0, 0.5);
+        padding: 3px 8px;
+        border: 1px dashed rgba(245, 168, 0, 0.25);
+        pointer-events: none;
+      }
 
-    /* Card body */
-    .mat-body{padding:20px 20px 16px;flex:1;display:flex;flex-direction:column;}
-    .mat-cat{font-family:"Bebas Neue",sans-serif;letter-spacing:3px;font-size:0.66rem;color:rgba(37,211,102,0.55);margin-bottom:6px;}
-    .mat-title{font-family:"Playfair Display",serif;font-size:1.1rem;color:var(--white);line-height:1.3;margin-bottom:8px;}
-    .mat-desc{font-size:0.92rem;line-height:1.62;color:rgba(248,244,236,0.5);margin-bottom:12px;flex:1;}
-    .mat-specs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;}
-    .mat-spec{
-      font-family:"Bebas Neue",sans-serif;letter-spacing:1px;font-size:0.65rem;
-      padding:3px 9px;background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.07);color:rgba(248,244,236,0.38);
-    }
-    .mat-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.05);padding-top:14px;}
-    .mat-price{font-family:"Playfair Display",serif;font-size:1.4rem;color:var(--gold);font-weight:700;}
-    .mat-price small{font-size:0.75rem;color:rgba(248,244,236,0.28);text-decoration:line-through;margin-left:4px;font-family:"Crimson Pro",serif;}
+      /* Card body */
+      .mat-body {
+        padding: 20px 20px 16px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .mat-cat {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 3px;
+        font-size: 0.66rem;
+        color: rgba(37, 211, 102, 0.55);
+        margin-bottom: 6px;
+      }
+      .mat-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        color: var(--white);
+        line-height: 1.3;
+        margin-bottom: 8px;
+      }
+      .mat-desc {
+        font-size: 0.92rem;
+        line-height: 1.62;
+        color: rgba(248, 244, 236, 0.5);
+        margin-bottom: 12px;
+        flex: 1;
+      }
+      .mat-specs {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      .mat-spec {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 1px;
+        font-size: 0.65rem;
+        padding: 3px 9px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        color: rgba(248, 244, 236, 0.38);
+      }
+      .mat-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 14px;
+      }
+      .mat-price {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: var(--gold);
+        font-weight: 700;
+      }
+      .mat-price small {
+        font-size: 0.75rem;
+        color: rgba(248, 244, 236, 0.28);
+        text-decoration: line-through;
+        margin-left: 4px;
+        font-family: "Crimson Pro", serif;
+      }
 
-    .wa-btn{
-      font-family:"Bebas Neue",sans-serif;letter-spacing:1.5px;font-size:0.76rem;
-      padding:9px 16px;
-      background:linear-gradient(135deg,var(--wa-dark),var(--wa-darker));
-      color:#fff;text-decoration:none;
-      clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
-      transition:all 0.3s;display:inline-flex;align-items:center;gap:7px;
-      white-space:nowrap;
-    }
-    .wa-btn:hover{background:linear-gradient(135deg,var(--whatsapp),var(--wa-dark));transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,0.3);}
+      .wa-btn {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 1.5px;
+        font-size: 0.76rem;
+        padding: 9px 16px;
+        background: linear-gradient(135deg, var(--wa-dark), var(--wa-darker));
+        color: #fff;
+        text-decoration: none;
+        clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+      .wa-btn:hover {
+        background: linear-gradient(135deg, var(--whatsapp), var(--wa-dark));
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+      }
 
-    /* ═══════════════════════════════
+      /* ═══════════════════════════════
        SECCIÓN 2 — CURSOS
     ═══════════════════════════════ */
-    .cursos-hero{
-      padding:60px;
-      background:radial-gradient(ellipse at 60% 40%,#1e1200 0%,#0d0d0d 70%);
-      border-bottom:1px solid rgba(245,168,0,0.15);
-      display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
-    }
-    .cursos-hero-text .sec-label{margin-bottom:10px;}
-    .cursos-hero-text .sec-title{font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:16px;}
-    .cursos-hero-text p{font-size:1.05rem;line-height:1.8;color:rgba(248,244,236,0.6);margin-bottom:28px;}
+      .cursos-hero {
+        padding: 60px;
+        background: radial-gradient(
+          ellipse at 60% 40%,
+          #1e1200 0%,
+          #0d0d0d 70%
+        );
+        border-bottom: 1px solid rgba(245, 168, 0, 0.15);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .cursos-hero-text .sec-label {
+        margin-bottom: 10px;
+      }
+      .cursos-hero-text .sec-title {
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        margin-bottom: 16px;
+      }
+      .cursos-hero-text p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: rgba(248, 244, 236, 0.6);
+        margin-bottom: 28px;
+      }
 
-    .cursos-platform-box{
-      background:var(--dark);border:1px solid rgba(245,168,0,0.2);
-      padding:40px 36px;position:relative;overflow:hidden;
-    }
-    .cursos-platform-box::before{
-      content:"";position:absolute;top:0;left:0;right:0;height:3px;
-      background:linear-gradient(90deg,transparent,var(--gold),transparent);
-    }
-    .platform-logo-row{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
-    .platform-icon{
-      width:56px;height:56px;border-radius:50%;
-      background:linear-gradient(135deg,#ff6b35,#f5a800);
-      display:flex;align-items:center;justify-content:center;
-      font-size:1.8rem;flex-shrink:0;
-    }
-    .platform-name{font-family:"Playfair Display",serif;font-size:1.4rem;color:var(--white);font-weight:700;}
-    .platform-name small{display:block;font-family:"Bebas Neue",sans-serif;letter-spacing:3px;font-size:0.72rem;color:var(--gold);margin-top:2px;}
-    .platform-desc{font-size:1rem;line-height:1.75;color:rgba(248,244,236,0.58);margin-bottom:24px;}
-    .platform-features{list-style:none;margin-bottom:28px;}
-    .platform-features li{
-      display:flex;align-items:center;gap:10px;
-      padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);
-      font-size:0.97rem;color:rgba(248,244,236,0.65);
-    }
-    .platform-features li:last-child{border:none;}
-    .feat-check{color:var(--gold);font-size:1rem;}
-    .go-btn{
-      display:inline-flex;align-items:center;gap:12px;
-      font-family:"Bebas Neue",sans-serif;letter-spacing:3px;font-size:1rem;
-      padding:15px 34px;
-      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
-      color:var(--black);text-decoration:none;
-      clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
-      transition:all 0.3s;width:100%;justify-content:center;
-    }
-    .go-btn:hover{background:linear-gradient(135deg,var(--gold-light),var(--gold));transform:translateY(-2px);box-shadow:0 8px 30px rgba(245,168,0,0.4);}
-    .go-btn-arrow{font-size:1.2rem;transition:transform 0.3s;}
-    .go-btn:hover .go-btn-arrow{transform:translateX(5px);}
+      .cursos-platform-box {
+        background: var(--dark);
+        border: 1px solid rgba(245, 168, 0, 0.2);
+        padding: 40px 36px;
+        position: relative;
+        overflow: hidden;
+      }
+      .cursos-platform-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+      .platform-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .platform-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff6b35, #f5a800);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        flex-shrink: 0;
+      }
+      .platform-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: var(--white);
+        font-weight: 700;
+      }
+      .platform-name small {
+        display: block;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 3px;
+        font-size: 0.72rem;
+        color: var(--gold);
+        margin-top: 2px;
+      }
+      .platform-desc {
+        font-size: 1rem;
+        line-height: 1.75;
+        color: rgba(248, 244, 236, 0.58);
+        margin-bottom: 24px;
+      }
+      .platform-features {
+        list-style: none;
+        margin-bottom: 28px;
+      }
+      .platform-features li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 7px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        font-size: 0.97rem;
+        color: rgba(248, 244, 236, 0.65);
+      }
+      .platform-features li:last-child {
+        border: none;
+      }
+      .feat-check {
+        color: var(--gold);
+        font-size: 1rem;
+      }
+      .go-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 3px;
+        font-size: 1rem;
+        padding: 15px 34px;
+        background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+        color: var(--black);
+        text-decoration: none;
+        clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+        transition: all 0.3s;
+        width: 100%;
+        justify-content: center;
+      }
+      .go-btn:hover {
+        background: linear-gradient(135deg, var(--gold-light), var(--gold));
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(245, 168, 0, 0.4);
+      }
+      .go-btn-arrow {
+        font-size: 1.2rem;
+        transition: transform 0.3s;
+      }
+      .go-btn:hover .go-btn-arrow {
+        transform: translateX(5px);
+      }
 
-    /* Cursos preview cards */
-    .cursos-preview{padding:50px 60px 80px;background:var(--black);}
-    .cursos-preview-title{font-family:"Playfair Display",serif;font-size:1.5rem;color:var(--white);margin-bottom:32px;}
-    .cursos-preview-title em{color:var(--gold);font-style:normal;}
-    .preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-    .preview-card{
-      background:var(--dark);border:1px solid rgba(245,168,0,0.1);
-      padding:26px 22px;transition:all 0.35s;position:relative;overflow:hidden;
-    }
-    .preview-card::after{
-      content:"";position:absolute;bottom:0;left:0;right:0;height:2px;
-      background:linear-gradient(90deg,transparent,var(--gold),transparent);
-      opacity:0;transition:opacity 0.35s;
-    }
-    .preview-card:hover{border-color:rgba(245,168,0,0.3);transform:translateY(-4px);}
-    .preview-card:hover::after{opacity:1;}
-    .preview-level{
-      font-family:"Bebas Neue",sans-serif;letter-spacing:3px;font-size:0.68rem;
-      color:rgba(245,168,0,0.5);margin-bottom:8px;
-    }
-    .preview-icon{font-size:2rem;margin-bottom:10px;}
-    .preview-card h4{font-family:"Playfair Display",serif;font-size:1.05rem;color:var(--white);margin-bottom:6px;}
-    .preview-card p{font-size:0.9rem;line-height:1.6;color:rgba(248,244,236,0.45);}
-    .preview-cta{
-      margin-top:40px;text-align:center;
-      padding:36px;
-      background:linear-gradient(135deg,rgba(245,168,0,0.06),rgba(245,168,0,0.02));
-      border:1px solid rgba(245,168,0,0.15);
-    }
-    .preview-cta p{font-size:1.1rem;color:rgba(248,244,236,0.6);margin-bottom:20px;font-style:italic;}
-    .preview-cta a{
-      display:inline-flex;align-items:center;gap:10px;
-      font-family:"Bebas Neue",sans-serif;letter-spacing:3px;font-size:1rem;
-      padding:14px 36px;
-      background:linear-gradient(135deg,var(--gold),var(--gold-dark));
-      color:var(--black);text-decoration:none;
-      clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
-      transition:all 0.3s;
-    }
-    .preview-cta a:hover{background:linear-gradient(135deg,var(--gold-light),var(--gold));transform:translateY(-2px);box-shadow:0 8px 25px rgba(245,168,0,0.35);}
+      /* Cursos preview cards */
+      .cursos-preview {
+        padding: 50px 60px 80px;
+        background: var(--black);
+      }
+      .cursos-preview-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: var(--white);
+        margin-bottom: 32px;
+      }
+      .cursos-preview-title em {
+        color: var(--gold);
+        font-style: normal;
+      }
+      .preview-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .preview-card {
+        background: var(--dark);
+        border: 1px solid rgba(245, 168, 0, 0.1);
+        padding: 26px 22px;
+        transition: all 0.35s;
+        position: relative;
+        overflow: hidden;
+      }
+      .preview-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.35s;
+      }
+      .preview-card:hover {
+        border-color: rgba(245, 168, 0, 0.3);
+        transform: translateY(-4px);
+      }
+      .preview-card:hover::after {
+        opacity: 1;
+      }
+      .preview-level {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 3px;
+        font-size: 0.68rem;
+        color: rgba(245, 168, 0, 0.5);
+        margin-bottom: 8px;
+      }
+      .preview-icon {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      .preview-card h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.05rem;
+        color: var(--white);
+        margin-bottom: 6px;
+      }
+      .preview-card p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(248, 244, 236, 0.45);
+      }
+      .preview-cta {
+        margin-top: 40px;
+        text-align: center;
+        padding: 36px;
+        background: linear-gradient(
+          135deg,
+          rgba(245, 168, 0, 0.06),
+          rgba(245, 168, 0, 0.02)
+        );
+        border: 1px solid rgba(245, 168, 0, 0.15);
+      }
+      .preview-cta p {
+        font-size: 1.1rem;
+        color: rgba(248, 244, 236, 0.6);
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+      .preview-cta a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 3px;
+        font-size: 1rem;
+        padding: 14px 36px;
+        background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+        color: var(--black);
+        text-decoration: none;
+        clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+        transition: all 0.3s;
+      }
+      .preview-cta a:hover {
+        background: linear-gradient(135deg, var(--gold-light), var(--gold));
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(245, 168, 0, 0.35);
+      }
 
-    /* ── GUARANTEE ── */
-    .guarantee{
-      background:linear-gradient(135deg,var(--dark),#1a0f00);
-      border-top:2px solid var(--gold-dark);border-bottom:2px solid var(--gold-dark);
-      padding:44px 60px;display:flex;align-items:center;justify-content:center;gap:60px;flex-wrap:wrap;
-    }
-    .guarantee-item{display:flex;align-items:center;gap:14px;}
-    .g-icon{font-size:2rem;}
-    .g-text h4{font-family:"Bebas Neue",sans-serif;letter-spacing:2px;font-size:0.88rem;color:var(--gold);}
-    .g-text p{font-size:0.86rem;color:rgba(248,244,236,0.42);margin-top:2px;}
+      /* ── GUARANTEE ── */
+      .guarantee {
+        background: linear-gradient(135deg, var(--dark), #1a0f00);
+        border-top: 2px solid var(--gold-dark);
+        border-bottom: 2px solid var(--gold-dark);
+        padding: 44px 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+      .guarantee-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .g-icon {
+        font-size: 2rem;
+      }
+      .g-text h4 {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        font-size: 0.88rem;
+        color: var(--gold);
+      }
+      .g-text p {
+        font-size: 0.86rem;
+        color: rgba(248, 244, 236, 0.42);
+        margin-top: 2px;
+      }
 
-    /* ── FOOTER ── */
-    .store-footer{
-      background:var(--black);border-top:1px solid rgba(245,168,0,0.1);
-      padding:26px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
-    }
-    .store-footer p{font-size:0.86rem;color:rgba(248,244,236,0.26);}
-    .store-footer a{color:var(--gold);text-decoration:none;font-family:"Bebas Neue",sans-serif;letter-spacing:2px;font-size:0.82rem;}
+      /* ── FOOTER ── */
+      .store-footer {
+        background: var(--black);
+        border-top: 1px solid rgba(245, 168, 0, 0.1);
+        padding: 26px 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .store-footer p {
+        font-size: 0.86rem;
+        color: rgba(248, 244, 236, 0.26);
+      }
+      .store-footer a {
+        color: var(--gold);
+        text-decoration: none;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        font-size: 0.82rem;
+      }
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:1024px){
-      .cursos-hero{grid-template-columns:1fr;gap:36px;}
-      .preview-grid{grid-template-columns:1fr 1fr;}
-    }
-    @media(max-width:900px){
-      nav{padding:10px 18px;}
-      .store-hero,.wa-banner,.how-order,.sec-header,.cat-pills,.cursos-hero,.cursos-preview,.guarantee,.store-footer{padding-left:20px;padding-right:20px;}
-      .store-hero{padding-top:106px;}
-      .mat-grid,.preview-grid{grid-template-columns:1fr;padding-left:20px;padding-right:20px;}
-      .tab-btn{padding:13px 20px;font-size:0.85rem;letter-spacing:2px;}
-      .how-steps{gap:20px;}
-      .how-step:not(:last-child)::after{display:none;}
-      .guarantee{gap:26px;}
-    }
-  </style>
-</head>
-<body>
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1024px) {
+        .cursos-hero {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+        .preview-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 900px) {
+        nav {
+          padding: 10px 18px;
+        }
+        .store-hero,
+        .wa-banner,
+        .how-order,
+        .sec-header,
+        .cat-pills,
+        .cursos-hero,
+        .cursos-preview,
+        .guarantee,
+        .store-footer {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .store-hero {
+          padding-top: 106px;
+        }
+        .mat-grid,
+        .preview-grid {
+          grid-template-columns: 1fr;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .tab-btn {
+          padding: 13px 20px;
+          font-size: 0.85rem;
+          letter-spacing: 2px;
+        }
+        .how-steps {
+          gap: 20px;
+        }
+        .how-step:not(:last-child)::after {
+          display: none;
+        }
+        .guarantee {
+          gap: 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a class="nav-logo" href="../index.html">
+        <img src="../images/akar1.png" alt="logo karpov" />
+        <span class="nav-logo-text"
+          >ANATOLY KARPOV<small>CLUB DE AJEDREZ</small></span
+        >
+      </a>
+      <a href="../index.html" class="nav-back">← Volver al sitio</a>
+    </nav>
 
-<nav>
-  <a class="nav-logo" href="index.html">
-    <img src="../images/akar1.png" alt="logo karpov">
-    <span class="nav-logo-text">ANATOLY KARPOV<small>CLUB DE AJEDREZ</small></span>
-  </a>
-  <a href="index.html" class="nav-back">← Volver al sitio</a>
-</nav>
+    <!-- HERO -->
+    <div class="store-hero">
+      <p class="hero-eyebrow">
+        Tienda Oficial · Club de Ajedrez Anatoly Karpov
+      </p>
+      <h1 class="hero-title">Nuestra <em>Tienda</em></h1>
+      <div class="hero-divider"></div>
+      <p class="hero-sub">
+        Material de ajedrez de calidad y cursos online para llevar tu juego al
+        siguiente nivel.
+      </p>
+    </div>
 
-<!-- HERO -->
-<div class="store-hero">
-  <p class="hero-eyebrow">Tienda Oficial · Club de Ajedrez Anatoly Karpov</p>
-  <h1 class="hero-title">Nuestra <em>Tienda</em></h1>
-  <div class="hero-divider"></div>
-  <p class="hero-sub">Material de ajedrez de calidad y cursos online para llevar tu juego al siguiente nivel.</p>
-</div>
+    <!-- TABS -->
+    <div class="section-tabs">
+      <button
+        class="tab-btn active"
+        onclick="switchTab('material')"
+        id="tab-material"
+      >
+        <span class="tab-icon">♟</span> Material de Ajedrez
+      </button>
+      <button class="tab-btn" onclick="switchTab('cursos')" id="tab-cursos">
+        <span class="tab-icon">🎓</span> Cursos Online
+      </button>
+    </div>
 
-<!-- TABS -->
-<div class="section-tabs">
-  <button class="tab-btn active" onclick="switchTab('material')" id="tab-material">
-    <span class="tab-icon">♟</span> Material de Ajedrez
-  </button>
-  <button class="tab-btn" onclick="switchTab('cursos')" id="tab-cursos">
-    <span class="tab-icon">🎓</span> Cursos Online
-  </button>
-</div>
-
-<!-- ══════════════════════
+    <!-- ══════════════════════
      SECCIÓN 1 — MATERIAL
 ══════════════════════ -->
-<div class="store-section visible" id="section-material">
-
-  <!-- WA Banner -->
-  <div class="wa-banner">
-    <div class="wa-banner-text">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Pedidos y consultas por WhatsApp · Envío a todo el Perú · Recojo en Arequipa
-    </div>
-    <a href="https://wa.me/51916096895?text=Hola,%20me%20interesa%20el%20material%20de%20ajedrez.%20%C2%BFPueden%20darme%20m%C3%A1s%20informaci%C3%B3n?" target="_blank" class="wa-cta-btn">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Contactar ahora
-    </a>
-  </div>
-
-  <!-- How to order -->
-  <div class="how-order">
-    <p class="how-label">¿Cómo comprar?</p>
-    <div class="how-steps">
-      <div class="how-step">
-        <div class="step-num">1</div>
-        <h4>Elige tu producto</h4>
-        <p>Selecciona lo que necesitas y haz clic en "Pedir por WhatsApp"</p>
-      </div>
-      <div class="how-step">
-        <div class="step-num">2</div>
-        <h4>Contáctanos</h4>
-        <p>Se abrirá el chat con el pedido listo. Confirmamos disponibilidad</p>
-      </div>
-      <div class="how-step">
-        <div class="step-num">3</div>
-        <h4>Paga fácil</h4>
-        <p>Aceptamos Yape, Plin, transferencia bancaria y efectivo</p>
-      </div>
-      <div class="how-step">
-        <div class="step-num">4</div>
-        <h4>Recibe tu pedido</h4>
-        <p>Envío a domicilio o recojo gratis en nuestra sede en Arequipa</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="sec-header">
-    <p class="sec-label">Material de calidad</p>
-    <h2 class="sec-title">Productos <em>disponibles</em></h2>
-    <div class="sec-divider"></div>
-  </div>
-
-  <div class="cat-pills">
-    <button class="cat-pill active" onclick="filterCat(this,'all')">Todo</button>
-    <button class="cat-pill" onclick="filterCat(this,'reloj')">Relojes</button>
-    <button class="cat-pill" onclick="filterCat(this,'usb')">Reyes USB</button>
-    <button class="cat-pill" onclick="filterCat(this,'tablero')">Tableros</button>
-  </div>
-
-  <div class="mat-grid" id="matGrid">
-
-    <!-- 1. Reloj grande -->
-    <div class="mat-card" data-cat="reloj">
-      <span class="mat-badge badge-stock">● En Stock</span>
-      <div class="mat-photo">
-        <img src="../images/relojgrande.png" alt="Reloj de Ajedrez Grande" id="img-reloj-grande"/>
-        <div class="photo-overlay"></div>
-        <span class="photo-add-label">📷 Reemplazar foto</span>
-      </div>
-      <div class="mat-body">
-        <p class="mat-cat">Reloj</p>
-        <h3 class="mat-title">Reloj de Ajedrez — Modelo Grande</h3>
-        <p class="mat-desc">Reloj digital de gran formato, pantalla amplia y fácil lectura. Ideal para torneos y clubs. Múltiples modos de tiempo.</p>
-        <div class="mat-specs">
-          <span class="mat-spec">Digital</span>
-          <span class="mat-spec">Pantalla grande</span>
-          <span class="mat-spec">Leap</span>
+    <div class="store-section visible" id="section-material">
+      <!-- WA Banner -->
+      <div class="wa-banner">
+        <div class="wa-banner-text">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+          Pedidos y consultas por WhatsApp · Envío a todo el Perú · Recojo en
+          Arequipa
         </div>
-        <div class="mat-footer">
-          <div class="mat-price">S/.250.00 </div>
-          <a href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Reloj%20de%20Ajedrez%20Modelo%20Grande.%20%C2%BFCu%C3%A1l%20es%20el%20precio%20y%20hay%20stock?" target="_blank" class="wa-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Pedir por WhatsApp
-          </a>
+        <a
+          href="https://wa.me/51916096895?text=Hola,%20me%20interesa%20el%20material%20de%20ajedrez.%20%C2%BFPueden%20darme%20m%C3%A1s%20informaci%C3%B3n?"
+          target="_blank"
+          class="wa-cta-btn"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+          Contactar ahora
+        </a>
+      </div>
+
+      <!-- How to order -->
+      <div class="how-order">
+        <p class="how-label">¿Cómo comprar?</p>
+        <div class="how-steps">
+          <div class="how-step">
+            <div class="step-num">1</div>
+            <h4>Elige tu producto</h4>
+            <p>
+              Selecciona lo que necesitas y haz clic en "Pedir por WhatsApp"
+            </p>
+          </div>
+          <div class="how-step">
+            <div class="step-num">2</div>
+            <h4>Contáctanos</h4>
+            <p>
+              Se abrirá el chat con el pedido listo. Confirmamos disponibilidad
+            </p>
+          </div>
+          <div class="how-step">
+            <div class="step-num">3</div>
+            <h4>Paga fácil</h4>
+            <p>Aceptamos Yape, Plin, transferencia bancaria y efectivo</p>
+          </div>
+          <div class="how-step">
+            <div class="step-num">4</div>
+            <h4>Recibe tu pedido</h4>
+            <p>Envío a domicilio o recojo gratis en nuestra sede en Arequipa</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- 2. Reloj pequeño negro -->
-    <div class="mat-card" data-cat="reloj">
-      <span class="mat-badge badge-stock">● En Stock</span>
-      <div class="mat-photo">
-        <img src="../images/relojpequenegro.png" alt="Reloj Pequeño Negro" id="img-reloj-negro"/>
-        <div class="photo-overlay"></div>
-        <span class="photo-add-label">📷 Ver foto</span>
+      <div class="sec-header">
+        <p class="sec-label">Material de calidad</p>
+        <h2 class="sec-title">Productos <em>disponibles</em></h2>
+        <div class="sec-divider"></div>
       </div>
-      <div class="mat-body">
-        <p class="mat-cat">Reloj</p>
-        <h3 class="mat-title">Reloj de Ajedrez Pequeño — Negro</h3>
-        <p class="mat-desc">Reloj compacto en color negro, perfecto para llevar en tu bolsa de torneo. Ligero, preciso y duradero.</p>
-        <div class="mat-specs">
-          <span class="mat-spec">Compacto</span>
-          <span class="mat-spec">Color negro</span>
-          <span class="mat-spec">Fácil transporte</span>
-        </div>
-        <div class="mat-footer">
-          <div class="mat-price">S/. 100.00</div>
-          <a href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Reloj%20Peque%C3%B1o%20Negro.%20%C2%BFCu%C3%A1l%20es%20el%20precio%20y%20hay%20disponibilidad?" target="_blank" class="wa-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Pedir por WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
 
-    <!-- 3. Reloj pequeño café -->
-    <div class="mat-card" data-cat="reloj">
-      <span class="mat-badge badge-stock">● En Stock</span>
-      <div class="mat-photo">
-        <img src="../images/relojpeque.png" alt="Reloj Pequeño Café" id="img-reloj-cafe"/>
-        <div class="photo-overlay"></div>
-        <span class="photo-add-label">📷 Ver foto</span>
+      <div class="cat-pills">
+        <button class="cat-pill active" onclick="filterCat(this, 'all')">
+          Todo
+        </button>
+        <button class="cat-pill" onclick="filterCat(this, 'reloj')">
+          Relojes
+        </button>
+        <button class="cat-pill" onclick="filterCat(this, 'usb')">
+          Reyes USB
+        </button>
+        <button class="cat-pill" onclick="filterCat(this, 'tablero')">
+          Tableros
+        </button>
       </div>
-      <div class="mat-body">
-        <p class="mat-cat">Reloj</p>
-        <h3 class="mat-title">Reloj de Ajedrez Pequeño — Café</h3>
-        <p class="mat-desc">Reloj compacto en tono café madera, elegante y clásico. Ideal para partidas analógicas con estilo.</p>
-        <div class="mat-specs">
-          <span class="mat-spec">Compacto</span>
-          <span class="mat-spec">Color café</span>
-          <span class="mat-spec">Acabado clásico</span>
-        </div>
-        <div class="mat-footer">
-          <div class="mat-price">S/. 120.00</div>
-          <a href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Reloj%20Peque%C3%B1o%20Caf%C3%A9.%20%C2%BFCu%C3%A1l%20es%20el%20precio%20y%20hay%20stock?" target="_blank" class="wa-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Pedir por WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
 
-    <!-- 4. Rey USB blanco -->
-    <div class="mat-card" data-cat="usb">
-      <span class="mat-badge badge-new">✨ Nuevo</span>
-      <div class="mat-photo">
-        <img src="../images/usb1.png" alt="Rey USB Blanco" id="img-rey-blanco" height="40px" width="30px"/>
-        <div class="photo-overlay"></div>
-        <span class="photo-add-label">📷 Ver foto</span>
-      </div>
-      <div class="mat-body">
-        <p class="mat-cat">Accesorio</p>
-        <h3 class="mat-title">Rey USB — Edición Blanca</h3>
-        <p class="mat-desc">Memoria USB con diseño de pieza de rey blanco. El regalo perfecto para el amante del ajedrez. Alta capacidad.</p>
-        <div class="mat-specs">
-          <span class="mat-spec">Figura rey blanco</span>
-          <span class="mat-spec">USB flash drive</span>
-          <span class="mat-spec">Edición limitada</span>
+      <div class="mat-grid" id="matGrid">
+        <!-- 1. Reloj grande -->
+        <div class="mat-card" data-cat="reloj">
+          <span class="mat-badge badge-stock">● En Stock</span>
+          <div class="mat-photo">
+            <img
+              src="../images/relojgrande.png"
+              alt="Reloj de Ajedrez Grande"
+              id="img-reloj-grande"
+            />
+            <div class="photo-overlay"></div>
+            <span class="photo-add-label">📷 Ver foto</span>
+          </div>
+          <div class="mat-body">
+            <p class="mat-cat">Reloj</p>
+            <h3 class="mat-title">Reloj de Ajedrez — Modelo Grande</h3>
+            <p class="mat-desc">
+              Reloj digital de gran formato, pantalla amplia y fácil lectura.
+              Ideal para torneos y clubs. Múltiples modos de tiempo.
+            </p>
+            <div class="mat-specs">
+              <span class="mat-spec">Digital</span>
+              <span class="mat-spec">Pantalla grande</span>
+              <span class="mat-spec">Leap</span>
+            </div>
+            <div class="mat-footer">
+              <div class="mat-price">S/.250.00</div>
+              <a
+                href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Reloj%20de%20Ajedrez%20Modelo%20Grande.%20%C2%BFCu%C3%A1l%20es%20el%20precio%20y%20hay%20stock?"
+                target="_blank"
+                class="wa-btn"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
+                </svg>
+                Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="mat-footer">
-          <div class="mat-price">S/. 35.00</div>
-          <a href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Rey%20USB%20Edici%C3%B3n%20Blanca.%20%C2%BFCu%C3%A1l%20es%20el%20precio?" target="_blank" class="wa-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Pedir por WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
 
-    <!-- 5. Rey USB marron -->
-    <div class="mat-card" data-cat="usb">
-      <span class="mat-badge badge-new">✨ Nuevo</span>
-      <div class="mat-photo">
-        <img src="../images/usbmarron.png" alt="Rey USB Negro" id="img-rey-negro"/>
-        <div class="photo-overlay"></div>
-        <span class="photo-add-label">📷 ver foto</span>
-      </div>
-      <div class="mat-body">
-        <p class="mat-cat">Accesorio</p>
-        <h3 class="mat-title">Rey USB — Edición Marrón</h3>
-        <p class="mat-desc">Memoria USB con diseño de pieza de rey marrón. Elegante, original y funcional. El souvenir ideal del club.</p>
-        <div class="mat-specs">
-          <span class="mat-spec">Figura rey negro</span>
-          <span class="mat-spec">USB flash drive</span>
-          <span class="mat-spec">Edición limitada</span>
+        <!-- 2. Reloj pequeño negro -->
+        <div class="mat-card" data-cat="reloj">
+          <span class="mat-badge badge-stock">● En Stock</span>
+          <div class="mat-photo">
+            <img
+              src="../images/relojpequenegro.png"
+              alt="Reloj Pequeño Negro"
+              id="img-reloj-negro"
+            />
+            <div class="photo-overlay"></div>
+            <span class="photo-add-label">📷 Ver foto</span>
+          </div>
+          <div class="mat-body">
+            <p class="mat-cat">Reloj</p>
+            <h3 class="mat-title">Reloj de Ajedrez Pequeño — Negro</h3>
+            <p class="mat-desc">
+              Reloj compacto en color negro, perfecto para llevar en tu bolsa de
+              torneo. Ligero, preciso y duradero.
+            </p>
+            <div class="mat-specs">
+              <span class="mat-spec">Compacto</span>
+              <span class="mat-spec">Color negro</span>
+              <span class="mat-spec">Fácil transporte</span>
+            </div>
+            <div class="mat-footer">
+              <div class="mat-price">S/. 100.00</div>
+              <a
+                href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Reloj%20Peque%C3%B1o%20Negro.%20%C2%BFCu%C3%A1l%20es%20el%20precio%20y%20hay%20disponibilidad?"
+                target="_blank"
+                class="wa-btn"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
+                </svg>
+                Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="mat-footer">
-          <div class="mat-price">S/. 35.00</div>
-          <a href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Rey%20USB%20Edici%C3%B3n%20Negra.%20%C2%BFCu%C3%A1l%20es%20el%20precio?" target="_blank" class="wa-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Pedir por WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
 
-    <!-- 6. Tableros 
+        <!-- 3. Reloj pequeño café -->
+        <div class="mat-card" data-cat="reloj">
+          <span class="mat-badge badge-stock">● En Stock</span>
+          <div class="mat-photo">
+            <img
+              src="../images/relojpeque.png"
+              alt="Reloj Pequeño Café"
+              id="img-reloj-cafe"
+            />
+            <div class="photo-overlay"></div>
+            <span class="photo-add-label">📷 Ver foto</span>
+          </div>
+          <div class="mat-body">
+            <p class="mat-cat">Reloj</p>
+            <h3 class="mat-title">Reloj de Ajedrez Pequeño — Café</h3>
+            <p class="mat-desc">
+              Reloj compacto en tono café madera, elegante y clásico. Ideal para
+              partidas analógicas con estilo.
+            </p>
+            <div class="mat-specs">
+              <span class="mat-spec">Compacto</span>
+              <span class="mat-spec">Color café</span>
+              <span class="mat-spec">Acabado clásico</span>
+            </div>
+            <div class="mat-footer">
+              <div class="mat-price">S/. 120.00</div>
+              <a
+                href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Reloj%20Peque%C3%B1o%20Caf%C3%A9.%20%C2%BFCu%C3%A1l%20es%20el%20precio%20y%20hay%20stock?"
+                target="_blank"
+                class="wa-btn"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
+                </svg>
+                Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Rey USB blanco -->
+        <div class="mat-card" data-cat="usb">
+          <span class="mat-badge badge-new">✨ Nuevo</span>
+          <div class="mat-photo">
+            <img
+              src="../images/usb1.png"
+              alt="Rey USB Blanco"
+              id="img-rey-blanco"
+              height="40"
+              width="30"
+            />
+            <div class="photo-overlay"></div>
+            <span class="photo-add-label">📷 Ver foto</span>
+          </div>
+          <div class="mat-body">
+            <p class="mat-cat">Accesorio</p>
+            <h3 class="mat-title">Rey USB — Edición Blanca</h3>
+            <p class="mat-desc">
+              Memoria USB con diseño de pieza de rey blanco. El regalo perfecto
+              para el amante del ajedrez. Alta capacidad.
+            </p>
+            <div class="mat-specs">
+              <span class="mat-spec">Figura rey blanco</span>
+              <span class="mat-spec">USB flash drive</span>
+              <span class="mat-spec">Edición limitada</span>
+            </div>
+            <div class="mat-footer">
+              <div class="mat-price">S/. 35.00</div>
+              <a
+                href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Rey%20USB%20Edici%C3%B3n%20Blanca.%20%C2%BFCu%C3%A1l%20es%20el%20precio?"
+                target="_blank"
+                class="wa-btn"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
+                </svg>
+                Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Rey USB marron -->
+        <div class="mat-card" data-cat="usb">
+          <span class="mat-badge badge-new">✨ Nuevo</span>
+          <div class="mat-photo">
+            <img
+              src="../images/usbmarron.png"
+              alt="Rey USB Negro"
+              id="img-rey-negro"
+            />
+            <div class="photo-overlay"></div>
+            <span class="photo-add-label">📷 ver foto</span>
+          </div>
+          <div class="mat-body">
+            <p class="mat-cat">Accesorio</p>
+            <h3 class="mat-title">Rey USB — Edición Marrón</h3>
+            <p class="mat-desc">
+              Memoria USB con diseño de pieza de rey marrón. Elegante, original
+              y funcional. El souvenir ideal del club.
+            </p>
+            <div class="mat-specs">
+              <span class="mat-spec">Figura rey negro</span>
+              <span class="mat-spec">USB flash drive</span>
+              <span class="mat-spec">Edición limitada</span>
+            </div>
+            <div class="mat-footer">
+              <div class="mat-price">S/. 35.00</div>
+              <a
+                href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20Rey%20USB%20Edici%C3%B3n%20Negra.%20%C2%BFCu%C3%A1l%20es%20el%20precio?"
+                target="_blank"
+                class="wa-btn"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
+                </svg>
+                Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Tableros 
     <div class="mat-card" data-cat="tablero">
       <span class="mat-badge badge-stock">● En Stock</span>
       <div class="mat-photo">
@@ -583,33 +1293,44 @@
           <div class="mat-price">S/. —</div>
           <a href="https://wa.me/51916096895?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20los%20Tableros%20de%20Ajedrez%20disponibles.%20%C2%BFQu%C3%A9%20modelos%20y%20precios%20tienen?" target="_blank" class="wa-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Pedir por WhatsApp
-          </a>-->
+          </a>
         </div>
       </div>
     </div>
-
-  </div>
-</div><!-- /section-material -->
-
-<!-- ══════════════════════
-     SECCIÓN 2 — CURSOS
-══════════════════════ -->
-<div class="store-section" id="section-cursos">
-
-  <div class="cursos-hero">
-    <div class="cursos-hero-text">
-      <p class="sec-label">Aprende desde donde estés</p>
-      <h2 class="sec-title" style="max-width:none">Cursos <em>Online</em><br>de Ajedrez</h2>
-      <div class="sec-divider" style="margin-bottom:20px"></div>
-      <p>Nuestros cursos online están diseñados por el Maestro Waldir Yucra Ortiz, con metodología FIDE y contenido estructurado para todos los niveles. Accede desde cualquier dispositivo, a tu ritmo.</p>
-      <div style="display:flex;gap:14px;flex-wrap:wrap">
-        <a href="#LINK-CURSOS-AQUI" target="_blank" class="go-btn" style="width:auto;padding:13px 28px;">
-          Ver todos los cursos <span class="go-btn-arrow">→</span>
-        </a>
+    -->
       </div>
     </div>
+    <!-- /section-material -->
 
-    <div class="cursos-platform-box">
+    <!-- ══════════════════════
+     SECCIÓN 2 — CURSOS
+══════════════════════ -->
+    <div class="store-section" id="section-cursos">
+      <div class="cursos-hero">
+        <div class="cursos-hero-text">
+          <p class="sec-label">Aprende desde donde estés</p>
+          <h2 class="sec-title" style="max-width: none">
+            Cursos <em>Online</em><br />de Ajedrez en Chessable
+          </h2>
+          <div class="sec-divider" style="margin-bottom: 20px"></div>
+          <p>
+            Nuestros cursos online están diseñados por el Maestro Waldir Yucra
+            Ortiz, con metodología FIDE y contenido estructurado para todos los
+            niveles. Accede desde cualquier dispositivo, a tu ritmo.
+          </p>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap">
+            <a
+              href="#LINK-CURSOS-AQUI"
+              target="_blank"
+              class="go-btn"
+              style="width: auto; padding: 13px 28px"
+            >
+              Ver todos los cursos <span class="go-btn-arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!--<div class="cursos-platform-box">
       <div class="platform-logo-row">
         <div class="platform-icon">🎓</div>
         <div class="platform-name">Plataforma de Cursos<small>Club Anatoly Karpov</small></div>
@@ -626,89 +1347,130 @@
       <a href="#LINK-CURSOS-AQUI" target="_blank" class="go-btn">
         🎓 Ir a la plataforma de cursos <span class="go-btn-arrow">→</span>
       </a>
+    </div>-->
+      </div>
+
+      <!-- GUARANTEE -->
     </div>
-  </div>
+    <div class="guarantee">
+      <div class="guarantee-item">
+        <span class="g-icon">💬</span>
+        <div class="g-text">
+          <h4>Atención por WhatsApp</h4>
+          <p>Respuesta en menos de 24h</p>
+        </div>
+      </div>
+      <div class="guarantee-item">
+        <span class="g-icon">🚚</span>
+        <div class="g-text">
+          <h4>Envío a todo el Perú</h4>
+          <p>Material físico a tu puerta</p>
+        </div>
+      </div>
+      <div class="guarantee-item">
+        <span class="g-icon">♾</span>
+        <div class="g-text">
+          <h4>Acceso de por vida</h4>
+          <p>En todos los cursos digitales</p>
+        </div>
+      </div>
+      <div class="guarantee-item">
+        <span class="g-icon">🏅</span>
+        <div class="g-text">
+          <h4>Calidad garantizada</h4>
+          <p>Material seleccionado por el club</p>
+        </div>
+      </div>
+    </div>
 
+    <div class="store-footer">
+      <p>© 2026 Club de Ajedrez Anatoly Karpov · Arequipa, Perú</p>
+      <a href="../index.html">← Volver al sitio principal</a>
+    </div>
 
-
-<!-- GUARANTEE -->
-<div class="guarantee">
-  <div class="guarantee-item"><span class="g-icon">💬</span><div class="g-text"><h4>Atención por WhatsApp</h4><p>Respuesta en menos de 24h</p></div></div>
-  <div class="guarantee-item"><span class="g-icon">🚚</span><div class="g-text"><h4>Envío a todo el Perú</h4><p>Material físico a tu puerta</p></div></div>
-  <div class="guarantee-item"><span class="g-icon">♾</span><div class="g-text"><h4>Acceso de por vida</h4><p>En todos los cursos digitales</p></div></div>
-  <div class="guarantee-item"><span class="g-icon">🏅</span><div class="g-text"><h4>Calidad garantizada</h4><p>Material seleccionado por el club</p></div></div>
-</div>
-
-<div class="store-footer">
-  <p>© 2026 Club de Ajedrez Anatoly Karpov · Arequipa, Perú</p>
-  <a href="index.html">← Volver al sitio principal</a>
-</div>
-
-<script>
-  function switchTab(tab) {
-    document.querySelectorAll('.store-section').forEach(s => s.classList.remove('visible'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('section-' + tab).classList.add('visible');
-    document.getElementById('tab-' + tab).classList.add('active');
-    window.scrollTo({top: 73, behavior: 'smooth'});
-  }
-
-  function filterCat(btn, cat) {
-    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.mat-card').forEach(card => {
-      if (cat === 'all' || card.dataset.cat === cat) {
-        card.style.display = 'flex';
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(12px)';
-        setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 50);
-      } else {
-        card.style.display = 'none';
+    <script>
+      function switchTab(tab) {
+        document
+          .querySelectorAll(".store-section")
+          .forEach((s) => s.classList.remove("visible"));
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("section-" + tab).classList.add("visible");
+        document.getElementById("tab-" + tab).classList.add("active");
+        window.scrollTo({ top: 73, behavior: "smooth" });
       }
-    });
-  }
 
+      function filterCat(btn, cat) {
+        document
+          .querySelectorAll(".cat-pill")
+          .forEach((p) => p.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll(".mat-card").forEach((card) => {
+          if (cat === "all" || card.dataset.cat === cat) {
+            card.style.display = "flex";
+            card.style.opacity = "0";
+            card.style.transform = "translateY(12px)";
+            setTimeout(() => {
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            }, 50);
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
 
-  // Make entire card clickable to product page
-  const cardLinks = {
-    0: 'reloj-grande.html',
-    1: 'reloj-negro.html',
-    2: 'reloj-cafe.html',
-    3: 'rey-usb-blanco.html',
-    4: 'rey-usb-negro.html',
-    5: 'tableros.html',
-  };
-  document.querySelectorAll('.mat-card').forEach((card, idx) => {
-    card.style.cursor = 'pointer';
-    // Add "Ver producto" overlay hint
-    const hint = document.createElement('div');
-    hint.style.cssText = `
+      // Make entire card clickable to product page
+      const cardLinks = {
+        0: "reloj-grande.html",
+        1: "reloj-negro.html",
+        2: "reloj-cafe.html",
+        3: "rey-usb-blanco.html",
+        4: "rey-usb-negro.html",
+        5: "tableros.html",
+      };
+      document.querySelectorAll(".mat-card").forEach((card, idx) => {
+        card.style.cursor = "pointer";
+        // Add "Ver producto" overlay hint
+        const hint = document.createElement("div");
+        hint.style.cssText = `
       position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
       background:rgba(0,0,0,0.55);opacity:0;transition:opacity 0.3s;z-index:4;
       font-family:"Bebas Neue",sans-serif;letter-spacing:3px;font-size:1rem;color:var(--gold);
       pointer-events:none;
     `;
-    hint.textContent = '🔍  VER PRODUCTO';
-    card.querySelector('.mat-photo').style.position = 'relative';
-    card.querySelector('.mat-photo').appendChild(hint);
-    card.addEventListener('mouseenter', () => hint.style.opacity = '1');
-    card.addEventListener('mouseleave', () => hint.style.opacity = '0');
-    card.addEventListener('click', (e) => {
-      if (!e.target.closest('.wa-btn')) {
-        window.open(cardLinks[idx], '_blank');
-      }
-    });
-  });
+        hint.textContent = "🔍  VER PRODUCTO";
+        card.querySelector(".mat-photo").style.position = "relative";
+        card.querySelector(".mat-photo").appendChild(hint);
+        card.addEventListener("mouseenter", () => (hint.style.opacity = "1"));
+        card.addEventListener("mouseleave", () => (hint.style.opacity = "0"));
+        card.addEventListener("click", (e) => {
+          if (!e.target.closest(".wa-btn")) {
+            window.open(cardLinks[idx], "_blank");
+          }
+        });
+      });
 
-  // Scroll reveal
-  const obs = new IntersectionObserver(entries => entries.forEach(e => {
-    if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
-  }), {threshold: 0.08});
-  document.querySelectorAll('.mat-card, .preview-card, .how-step').forEach(el => {
-    el.style.opacity = '0'; el.style.transform = 'translateY(18px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    obs.observe(el);
-  });
-</script>
-</body>
+      // Scroll reveal
+      const obs = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.style.opacity = "1";
+              e.target.style.transform = "translateY(0)";
+            }
+          }),
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".mat-card, .preview-card, .how-step")
+        .forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(18px)";
+          el.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+          obs.observe(el);
+        });
+    </script>
+  </body>
 </html>
