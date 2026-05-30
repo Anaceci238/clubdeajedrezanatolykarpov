@@ -946,6 +946,36 @@ footer {
   background: var(--black);
 }
 
+/* ── HAMBURGER ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 200;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .coach-profile {
@@ -963,8 +993,46 @@ footer {
 @media (max-width: 900px) {
   nav {
     padding: 12px 20px;
+    flex-wrap: wrap;
+  }
+  .nav-hamburger {
+    display: flex;
   }
   .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(13, 13, 13, 0.98);
+    border-bottom: 2px solid var(--gold-dark);
+    padding: 16px 20px 24px;
+    z-index: 150;
+  }
+  .nav-links.nav-open {
+    display: flex;
+  }
+  .nav-links li {
+    width: 100%;
+  }
+  .nav-links a {
+    display: block;
+    padding: 12px 4px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(245, 168, 0, 0.1);
+  }
+  .nav-links li:last-child a {
+    border-bottom: none;
+  }
+  .nav-store-link {
+    margin-top: 10px;
+    clip-path: none !important;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .nav-social {
     display: none;
   }
   section {

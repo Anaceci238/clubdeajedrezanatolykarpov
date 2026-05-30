@@ -39,19 +39,22 @@
           >ANATOLY KARPOV<small>CLUB DE AJEDREZ</small></span
         >
       </a>
-      <ul class="nav-links">
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#programas">Programas</a></li>
-        <li><a href="#torneos">Torneos</a></li>
-        <li><a href="#entrenadores">Entrenador</a></li>
-        <li><a href="#youtube">YouTube</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#nosotros" class="nav-link-item">Nosotros</a></li>
+        <li><a href="#programas" class="nav-link-item">Programas</a></li>
+        <li><a href="#torneos" class="nav-link-item">Torneos</a></li>
+        <li><a href="#entrenadores" class="nav-link-item">Entrenador</a></li>
+        <li><a href="#youtube" class="nav-link-item">YouTube</a></li>
+        <li><a href="#contacto" class="nav-link-item">Contacto</a></li>
         <li>
           <a href="../paginas/tienda.html" class="nav-store-link" target="_blank"
             >🛒 TIENDA</a
           >
         </li>
       </ul>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
       <div class="nav-social">
         <a
           href="https://www.facebook.com/ClubAnatolyKarpov.Peru"
@@ -619,6 +622,20 @@
           el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
           obs.observe(el);
         });
+
+      // Hamburger menu
+      const hamburger = document.getElementById("navHamburger");
+      const navLinks = document.getElementById("navLinks");
+      hamburger.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("nav-open");
+        hamburger.classList.toggle("is-open", isOpen);
+      });
+      document.querySelectorAll(".nav-link-item, .nav-store-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("nav-open");
+          hamburger.classList.remove("is-open");
+        });
+      });
     </script>
   </body>
 </html>
